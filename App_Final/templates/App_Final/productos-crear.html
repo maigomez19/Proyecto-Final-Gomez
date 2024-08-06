@@ -1,0 +1,41 @@
+{% extends 'App_Final/base.html' %}
+{% load static %}
+
+{% block main %}
+    <main class="container pt-5 pb-5" id="productos-crear">
+        {% if respuesta %}
+
+            <p class={{tipo}}>{{ respuesta }}</p>
+
+        {% endif %}
+        
+        <h1 id="title-productos-crear">Crear Producto</h1>
+
+        {% comment %} {% if formulario.errors %}
+
+            <p>ERROR</p>
+
+        {% endif %} {% endcomment %}
+
+        <!-- FORM CREAR-->
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {% comment %} <table>
+                {{ formulario.as_table }}
+            </table> {% endcomment %}
+
+            {% for campo in formulario %}
+                <div id='producto-crear-{{campo.name}}'>
+                    {{campo.label_tag}}
+                    {{campo}}
+                    {{campo.errors}}
+                </div>
+            {% endfor %}
+
+            <div class="d-flex flex-row justify-content-end">
+                <input class="btn btn-registro" type="submit" value="Crear">
+            </div>
+        </form>
+    </main>
+{% endblock %}
