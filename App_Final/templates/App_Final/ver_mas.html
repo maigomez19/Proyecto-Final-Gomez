@@ -3,6 +3,14 @@
 
 {% block main %}
     <main>
-        <h1>Detalle articulo</h1>
+        <p>{{articulo.fecha}}</p>
+
+        <p>{{articulo.clasificacion}}</p>
+
+        <h1>{{articulo.titulo}}</h1>
+
+        <p>{{articulo.detalle}}</p>
+
+        <p>Autor: {{articulo.autor}}</p>
     </main>
 {% endblock %}

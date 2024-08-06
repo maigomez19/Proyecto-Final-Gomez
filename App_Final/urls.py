@@ -18,21 +18,21 @@ from django.urls import path
 from App_Final import views
 
 urlpatterns = [
-    path('', views.inicio, name='Inicio'),
+    path('', views.InicioListView.as_view(), name='Inicio'),
     # Usuario
     path('login/', views.login, name='Login'),
     path('registro/', views.registro, name='Registro'),
     path('perfil/<id_usuario>', views.perfil, name='Perfil'),
 
     # Producto
-    path('productos/', views.productos, name='Productos'),
+    path('productos/', views.ProductosListView.as_view(), name='Productos'),
     path('productos/buscar/', views.buscar_productos, name='Buscar Productos'),
-    path('productos/crear/', views.crear_producto, name='Crear Producto'),
+    path('productos/crear/', views.ProductosCreateView.as_view(), name='Crear Producto'),
     path('productos/<id_producto>', views.detalle, name='Detalle Producto'),
 
     # Articulo
-    path('articulos/', views.articulos, name='Articulos'),
+    path('articulos/', views.ArticulosListView.as_view(), name='Articulos'),
     path('articulos/buscar/', views.buscar_articulos, name='Buscar Articulos'),
-    path('articulos/crear/', views.crear_articulo, name='Crear Articulo'),
-    path('articulos/<id_articulos>', views.ver_mas, name='Detalle Articulo'),
+    path('articulos/crear/', views.ArticulosCreateView.as_view(), name='Crear Articulo'),
+    path('articulos/<pk>', views.ArticuloDetailView.as_view(), name='DetalleArticulo'),
 ]

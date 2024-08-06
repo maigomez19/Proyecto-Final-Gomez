@@ -11,27 +11,11 @@
 
         <h1 id="title-articulos-crear">Crear Artículo</h1>
 
-        {% comment %} {% if formulario.errors %}
-
-            <p>ERROR</p>
-
-        {% endif %} {% endcomment %}
-
         <!-- FORM CREAR-->
         <form action="" method="POST">
             {% csrf_token %}
 
-            {% comment %} <table>
-                {{ formulario.as_table }}
-            </table> {% endcomment %}
-
-            {% for campo in formulario %}
-                <div id='articulos-crear-{{campo.name}}'>
-                    {{campo.label_tag}}
-                    {{campo}}
-                    {{campo.errors}}
-                </div>
-            {% endfor %}
+            {{form.as_p }}
 
             <div class="d-flex flex-row justify-content-end">
                 <input class="btn btn-registro" type="submit" value="Crear">

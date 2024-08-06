@@ -5,10 +5,23 @@ from App_Final.forms import ProductoFormulario, UsuarioFormulario, ArticuloFormu
 from django.shortcuts import render
 from datetime import date
 
-def inicio(request):
-    articulos = Articulo.objects.all()[:3]
+# import clases basadas en vistas
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
-    return render(request, "App_Final/index.html", {"articulos": articulos})
+class InicioListView(ListView):
+    model = Articulo
+
+    context_object_name = "Inicio"
+
+    def get_queryset(self, *args, **kwargs): 
+        query = super(InicioListView, self).get_queryset(*args, **kwargs) 
+        query = query.all()[:3] 
+        return query
+
+    template_name = "App_Final/index.html"
 
 def login(request):
     plantilla = loader.get_template('App_Final/login.html')
@@ -65,36 +78,21 @@ def buscar_productos(request):
 
         return render(request, "App_Final/productos.html", {"productos": productos, "respuesta": respuesta})
 
-def productos(request):
-    productos = Producto.objects.all()
+class ProductosListView(ListView):
+    model = Producto
 
-    return render(request, "App_Final/productos.html", {"productos": productos})
+    context_object_name = "Productos"
 
-def crear_producto(request):
-    if request.method == 'POST':
-        formulario = ProductoFormulario(request.POST)
+    template_name = "App_Final/productos.html"
 
-        if formulario.is_valid():
-            informacion = formulario.cleaned_data
-            producto = Producto(
-                nombre=informacion["nombre"], 
-                detalle=informacion["detalle"], 
-                precio=informacion["precio"], 
-                seccion_rostro=informacion["seccion_rostro"]
-            )
-            producto.save()
+class ProductosCreateView(CreateView):
+    model = Producto
 
-            formulario = ProductoFormulario()
+    template_name = "App_Final/productos-crear.html"
 
-            respuesta = "¡Producto creado con éxito!"
+    success_url = reverse_lazy("Productos")
 
-            tipo = "success"
-
-            return render(request, "App_Final/productos-crear.html", {"formulario": formulario, "respuesta": respuesta, "tipo": tipo})
-    else:
-        formulario = ProductoFormulario()
-
-    return render(request, "App_Final/productos-crear.html", {"formulario": formulario})
+    fields = ["nombre", "detalle", "precio", "seccion_rostro"]
 
 def detalle(request, id_producto):
     plantilla = loader.get_template('App_Final/detalle.html')
@@ -117,41 +115,23 @@ def buscar_articulos(request):
 
         return render(request, "App_Final/articulos.html", {"articulos": articulos, "respuesta": respuesta})
 
-def articulos(request):
-    articulos = Articulo.objects.all()
+class ArticulosListView(ListView):
+    model = Articulo
 
-    return render(request, "App_Final/articulos.html", {"articulos": articulos})
+    context_object_name = "Articulos"
 
-def crear_articulo(request):
-    if request.method == 'POST':
-        formulario = ArticuloFormulario(request.POST)
+    template_name = "App_Final/articulos.html"
 
-        if formulario.is_valid():
-            informacion = formulario.cleaned_data
-            articulo = Articulo(
-                titulo=informacion["titulo"], 
-                detalle=informacion["detalle"],
-                fecha=date.today, 
-                autor=informacion["autor"], 
-                clasificacion=informacion["clasificacion"]
-            )
-            articulo.save()
+class ArticulosCreateView(CreateView):
+    model = Articulo
 
-            formulario = ArticuloFormulario()
+    template_name = "App_Final/articulos-crear.html"
 
-            respuesta = "¡Artículo creado con éxito!"
+    success_url = reverse_lazy("Articulos")
 
-            tipo = "success"
+    fields = ["titulo", "detalle", "autor", "clasificacion"]
 
-            return render(request, "App_Final/articulos-crear.html", {"formulario": formulario, "respuesta": respuesta, "tipo": tipo})
-    else:
-        formulario = ArticuloFormulario()
+class ArticuloDetailView(DetailView):
+    model = Articulo
 
-    return render(request, "App_Final/articulos-crear.html", {"formulario": formulario})
-
-def ver_mas(request, id_producto):
-    plantilla = loader.get_template('App_Final/ver_mas.html')
-
-    documento = plantilla.render()
-
-    return HttpResponse(documento)
+    template_name = "App_Final/ver_mas.html"
