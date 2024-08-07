@@ -6,7 +6,7 @@
         <h1 id="title-productos">Productos</h1>
 
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
-            <button class="btn crear-btn mb-3 mb-md-0"><a href="{% url 'Crear Producto' %}">Crear producto</a></button>
+            <button class="btn crear-btn mb-3 mb-md-0"><a href="{% url 'CrearProducto' %}">Crear producto</a></button>
 
             <!-- BUSCADOR -->
             <form action="/productos/buscar/" method="GET">
@@ -35,6 +35,8 @@
                                         <h5 class="mb-3 precio-producto">${{producto.precio}}</h5>
                                         <p class="card-text mb-0 nombre-producto">{{producto.nombre}}</p>
                                         <p class="card-text mb-0 text-truncate">{{producto.detalle}}</p>
+
+                                        <a class="btn btn-primary w-100" href="{% url 'DetalleProducto' producto.pk %}">Ver más</a>
                                     </div>
                                 </div>
                             </div>

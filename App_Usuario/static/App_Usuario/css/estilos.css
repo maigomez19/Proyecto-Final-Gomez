@@ -32,74 +32,6 @@
     color: white !important;
 }
 
-/*INDEX*/
-.icono-index {
-    background-color: #f07f83;
-}
-
-.separador {
-    color: #c74551 !important;
-}
-
-.call-to-action {
-    background-color: #c74551;
-}
-
-/*FOOTER*/
-#titulo-navbar-footer {
-    font-family: "bodoni-urw", serif;
-    font-weight: 400;
-    font-style: normal;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: white;
-    margin-left: .4em;
-}
-
-/*PRODUCTOS*/
-.precio-producto {
-    font-size: 2em !important;
-    font-weight: bold !important;
-}
-
-#title-productos, #title-articulos, #title-registro, #title-productos-crear, #title-articulos-crear {
-    font-family: "bodoni-urw", serif !important;
-    font-weight: 400 !important;
-    font-style: normal !important;
-    text-transform: uppercase !important;
-    font-size: 2.8em !important;
-    text-align: center !important;
-}
-
-.crear-btn, #productos .btn-buscar, #articulos .btn-buscar, .btn-registro {
-    background-color: #c74551;
-}
-
-.crear-btn a, #productos .btn-buscar, #articulos .btn-buscar, .btn-registro {
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
-}
-
-.crear-btn:hover, #productos .btn-buscar:hover, #articulos .btn-buscar:hover, .btn-registro:hover {
-    background: #ec6573 !important;
-    transition: all .5s ease-in-out !important;
-    color: white !important;
-}
-
-#productos .btn-buscar, #articulos .btn-buscar {
-    margin-left: .5em;
-}
-
-#productos .nombre-producto {
-    font-weight: bold;
-}
-
-/*ARTICULOS*/
-.titulo-card-articulo {
-    font-weight: bold !important;
-}
-
 /*REGISTRO*/
 #registro form, #productos-crear form, #articulos-crear form {
     max-width: 700px;
@@ -133,13 +65,6 @@
 
 #registro-rol,  #articulos-crear-fecha {
     display: none !important;
-}
-
-/*PRODUCTOS CREAR*/
-#producto-crear-detalle textarea, #articulos-crear-detalle textarea {
-    max-height: 200px !important;
-    resize: none !important;
-    overflow-y: scroll !important;
 }
 
 /*MENSAJES USUARIO*/

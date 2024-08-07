@@ -1,0 +1,20 @@
+{% extends 'App_Final/base.html' %}
+{% load static %}
+
+{% block main %}
+    <main>
+        <h1>{{ usuario.nombre }} {{ usuario.apellido }}</h1>
+
+        {% if usuario.rol == 1 %}
+
+            <p>Tipo de usuario: Administrador</p>
+        
+        {% elif usuario.rol == 2 %}
+
+            <p>Tipo de usuario: Estandar</p>
+
+        {% endif %}
+
+        <p>Email: {{ usuario.email }}</p>
+    </main>
+{% endblock %}
